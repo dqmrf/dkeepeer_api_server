@@ -4,8 +4,12 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    User.find_by_id(session[:user_id]) || redirect_to(new_session_url)
+    User.find_by_email(params[:email] || redirect_to(api_user_path))
     # fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
+  end
+
+  resource_owner_from_credentials do |routes|
+    User.find_by_email(params[:id])
   end
 
   default_scopes :public
