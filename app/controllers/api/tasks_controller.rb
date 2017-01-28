@@ -4,8 +4,9 @@ class Api::TasksController < ApiController
 
   def index
     @tasks = current_user.tasks
+    binding.pry
     if @tasks.present?
-      render
+      render :index
     else
       render json: { message: 'No Spaces Found' }, status: 200
     end

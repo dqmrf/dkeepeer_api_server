@@ -4,16 +4,21 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    User.find_by_email(params[:email] || redirect_to(api_user_path))
+    # User.find_by_email(params[:email] || redirect_to(api_user_path))
     # fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
   end
 
   resource_owner_from_credentials do |routes|
-    User.find_by_email(params[:id])
+    # User.find_by_email(params[:id])
+    User.find_by_email(params[:email])
   end
 
   default_scopes :public
   optional_scopes :write
+
+  grant_flows ['password', 'client_credentials']
+
+  access_token_expires_in nil
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   # admin_authenticator do
