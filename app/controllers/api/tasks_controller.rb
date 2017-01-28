@@ -8,7 +8,7 @@ class Api::TasksController < ApiController
     if @tasks.present?
       render :index
     else
-      render json: { message: 'No Spaces Found' }, status: 200
+      render json: { message: 'No Tasks Found' }, status: 200
     end
     # render json: @tasks, status: :ok
   end
