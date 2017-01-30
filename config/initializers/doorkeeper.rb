@@ -9,7 +9,10 @@ Doorkeeper.configure do
   end
 
   resource_owner_from_credentials do |routes|
-    User.find_by_email(params[:email])
+    user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
+      user
+    end
   end
 
   default_scopes :public

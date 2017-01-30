@@ -4,9 +4,8 @@ class Api::TasksController < ApiController
 
   def index
     @tasks = current_user.tasks
-    binding.pry
     if @tasks.present?
-      render :index
+      render
     else
       render json: { message: 'No Tasks Found' }, status: 200
     end
