@@ -9,7 +9,6 @@ class Api::TasksController < ApiController
     else
       render json: { message: 'No Tasks Found' }, status: 200
     end
-    # render json: @tasks, status: :ok
   end
 
   def create
@@ -23,10 +22,6 @@ class Api::TasksController < ApiController
       }, status: 422
     end
   end
-  # def create
-  #   @task = current_resource_owner.tasks.create(task_params)
-  #   render json: @task, status: :created if @task.save
-  # end
 
   def show
   end
@@ -52,7 +47,6 @@ class Api::TasksController < ApiController
       }, status: 422
     end
   end
-
 
   private
 

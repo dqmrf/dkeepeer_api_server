@@ -15,9 +15,7 @@ class Api::UsersController < ApiController
   end
 
   def show
-    binding.pry
     render
-    # render json: current_user.as_json
   end
 
   def create
