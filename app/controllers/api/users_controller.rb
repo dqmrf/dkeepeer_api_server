@@ -1,6 +1,5 @@
 class Api::UsersController < ApiController
   before_action :find_user, only: [:show, :update, :destroy]
-  before_action :doorkeeper_authorize!
   # before_action -> { doorkeeper_authorize! :public }, only: :show
   # before_action -> { doorkeeper_authorize! :write }, only: :update
 
@@ -22,7 +21,7 @@ class Api::UsersController < ApiController
     @user = User.new(user_params)
 
     if @user.save
-      render :show
+      render :show, status: :ok
     else
       render json: {
         message: 'Validation Failed',
