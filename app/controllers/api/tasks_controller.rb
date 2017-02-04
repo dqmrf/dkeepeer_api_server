@@ -3,7 +3,7 @@ class Api::TasksController < ApiController
   before_action :set_task, only: [:show, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.order(updated_at: :desc)
     if @tasks.present?
       render
     else
