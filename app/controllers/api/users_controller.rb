@@ -1,7 +1,5 @@
 class Api::UsersController < ApiController
   before_action :find_user, only: [:show, :update, :destroy]
-  # before_action -> { doorkeeper_authorize! :public }, only: :show
-  # before_action -> { doorkeeper_authorize! :write }, only: :update
 
   def index
     @users = User.all
@@ -55,7 +53,7 @@ class Api::UsersController < ApiController
   private
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
     end
 
     def find_user
