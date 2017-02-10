@@ -17,7 +17,7 @@ class Api::TasksController < ApiController
       render :show
     else
       render json: {
-        message: 'Validation Failed',
+        message: 'Creation Failed',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -31,7 +31,7 @@ class Api::TasksController < ApiController
       render
     else
       render json: {
-        message: 'Validation Failed',
+        message: 'Updating Failed',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -42,9 +42,24 @@ class Api::TasksController < ApiController
       render
     else
       render json: {
-        message: 'Validation Failed',
+        message: 'Destroy Failed',
         errors: @task.errors.full_messages
       }, status: 422
+    end
+  end
+
+  def batch_destroy
+    @ids = params[:tasks]
+    if @ids && @ids.kind_of?(Array)
+      @tasks = current_user.tasks.where(id: @ids)
+      if @tasks.delete_all
+        render 
+      else
+        render json: {
+          message: 'Deletion failsed.',
+          errors: @task.errors.full_messages
+        }, status: 422
+      end
     end
   end
 
