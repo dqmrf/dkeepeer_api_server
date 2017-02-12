@@ -13,6 +13,7 @@ gem 'bcrypt-ruby'
 gem 'doorkeeper'
 gem 'oauth2'
 gem 'rack-cors', require: 'rack/cors'
+gem "figaro"
 
 group :development, :test do
   gem 'byebug', platform: :mri

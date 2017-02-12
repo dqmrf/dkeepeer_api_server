@@ -5,3 +5,5 @@
 !/tmp/.keep
 .byebug_history
 config/database.yml
+/config/application.yml
+.env
