@@ -19,6 +19,8 @@ class Api::UsersController < ApiController
     @user = User.new(user_params)
 
     if @user.save
+      @origin = request.headers['origin']
+      ApplicationMailer.registration_confirmation(@user, @origin).deliver
       render :show, status: :ok
     else
       render json: {
@@ -33,7 +35,7 @@ class Api::UsersController < ApiController
       render :show
     else
       render json: {
-        message: 'Validation Failed',
+        message: 'Updating Failed',
         errors: @user.errors.full_messages
       }, status: 422
     end
@@ -44,8 +46,22 @@ class Api::UsersController < ApiController
       render
     else
       render json: {
-        message: 'Validation Failed',
+        message: 'Destroying Failed',
         errors: @user.errors.full_messages
+      }, status: 422
+    end
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.update_attribute(:email_confirmed, true)
+      render json: {
+        message: 'Email address is Confirmed'
+      }, status: 200
+    else
+      render json: {
+        message: 'Confirmation Failed'
       }, status: 422
     end
   end
