@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20170211152803) do
     t.datetime "updated_at",                      null: false
     t.boolean  "email_confirmed", default: false
     t.string   "confirm_token"
-    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
