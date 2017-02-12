@@ -1,0 +1,7 @@
+<p>Hello <%= @user.first_name %>!</p>
+<p>
+  Thanks for registering! To confirm your registration click the link below.
+</p>
+<p>
+  <%= link_to("Confirm my Email", "#{@origin}/confirm_email?confirmation_token=#{@user.confirm_token}") %>
+</p>

@@ -19,7 +19,8 @@ class Api::UsersController < ApiController
     @user = User.new(user_params)
 
     if @user.save
-      ApplicationMailer.registration_confirmation(@user).deliver
+      @origin = request.headers['origin']
+      ApplicationMailer.registration_confirmation(@user, @origin).deliver
       render :show, status: :ok
     else
       render json: {
