@@ -19,15 +19,7 @@ class Api::UsersController < ApiController
     @user = User.new(user_params)
 
     if @user.save
-      
       origin = request.headers['origin']
-
-      # parsed_url = URI.parse(origin)
-      # http = Net::HTTP.new(parsed_url.host, parsed_url.port)
-      # http.use_ssl = true if request.url =~ /^https/
-
-      # binding.pry
-
       ApplicationMailer.registration_confirmation(@user, origin).deliver
       render :show, status: :ok
     else
