@@ -30,5 +30,6 @@ module Dkeeper
       user_name: Figaro.env.gmail_username,
       password: Figaro.env.gmail_password
     }
+    binding.pry
   end
 end
