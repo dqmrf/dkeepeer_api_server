@@ -14,9 +14,5 @@ Rails.application.routes.draw do
         delete 'batch_destroy'
       end
     end
-    
-    get '/me' => "credentials#me"
   end
-
-  root to: 'pages#index'
 end
