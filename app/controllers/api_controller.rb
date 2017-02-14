@@ -8,6 +8,7 @@ class ApiController < ApplicationController
   end
 
   def current_user
-    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+    return @current_user if defined? @current_user
+    @current_user = User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 end
