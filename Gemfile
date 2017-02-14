@@ -13,10 +13,16 @@ gem 'bcrypt-ruby'
 gem 'doorkeeper'
 gem 'oauth2'
 gem 'rack-cors', require: 'rack/cors'
-gem "figaro"
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'foreman'
+  gem 'capybara'
+  gem 'rspec-collection_matchers'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -24,7 +30,12 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'pry-rails'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'shoulda'
+  gem 'faker'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
