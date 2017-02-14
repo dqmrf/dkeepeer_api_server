@@ -6,4 +6,5 @@
 .byebug_history
 config/database.yml
 /config/application.yml
+npm-debug.log
 .env
