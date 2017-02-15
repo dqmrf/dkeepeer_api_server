@@ -107,8 +107,9 @@ describe 'POST /api/users' do
       {
         'message' => 'Validation Failed',
         'errors' => [
-          "Password can't be blank", 
-          "First name can't be blank", 
+          "Password can't be blank",
+          "Email has already been taken",
+          "First name can't be blank",
           "Last name can't be blank"
         ]
       })

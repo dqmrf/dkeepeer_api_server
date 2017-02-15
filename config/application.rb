@@ -14,6 +14,9 @@ module Dkeeper
       end
     end
 
+    # Load validators
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
+
     # Mailer
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true
