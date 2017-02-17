@@ -24,7 +24,7 @@ class Api::TasksController < ApiController
   end
 
   def show
-    if !@task
+    unless @task
       render json: {
         message: 'Can\'t load task',
         errors: @task.errors.full_messages

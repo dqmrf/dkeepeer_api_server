@@ -94,11 +94,7 @@ end
 
 describe 'POST /api/tasks' do
   include_context :doorkeeper_app_with_token
-  let(:due_date) { 
-    date = Date.today
-    date.to_s
-    (date+1).to_s
-  }
+  let(:due_date) { Date.tomorrow.to_s }
   let(:request_params) {
     {
       access_token: access_token.token,
