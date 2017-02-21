@@ -1,5 +1,4 @@
 require_relative 'boot'
-
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -8,13 +7,15 @@ Bundler.require(*Rails.groups)
 
 module Dkeeper
   class Application < Rails::Application
-    config.active_record.raise_in_transactional_callbacks = true
     config.middleware.use Rack::Cors do
       allow do
         origins '*'
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
       end
     end
+
+    # Load validators
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
 
     # Mailer
     config.action_mailer.delivery_method = :smtp

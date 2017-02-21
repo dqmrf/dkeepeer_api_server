@@ -7,6 +7,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :tasks, allow_destroy: true
   
   validates :email, presence: true
+  validates :email, uniqueness: true, if: :email
   validates :first_name, presence: true
   validates :last_name, presence: true
 

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   namespace :api, defaults: { format: 'json' } do
     # Users
-    resources :users,  only: [:index, :create, :show, :update, :destroy] do
+    resources :users, only: [:index, :create, :show, :update, :destroy] do
       member do
         get :confirm_email
       end
