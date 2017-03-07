@@ -7,7 +7,7 @@ class Api::TasksController < ApiController
     if @tasks.present?
       render
     else
-      render json: { message: 'No Tasks Found' }, status: 200
+      render json: { message: 'No tasks found' }, status: 204
     end
   end
 
@@ -17,7 +17,7 @@ class Api::TasksController < ApiController
       render :show
     else
       render json: {
-        message: 'Creation Failed',
+        message: 'Creating failed',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -28,7 +28,7 @@ class Api::TasksController < ApiController
       render json: {
         message: 'Can\'t load task',
         errors: @task.errors.full_messages
-      }, status: 422 
+      }, status: 204 
     end
   end
 
@@ -37,7 +37,7 @@ class Api::TasksController < ApiController
       render
     else
       render json: {
-        message: 'Updating Failed',
+        message: 'Updating failed',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -48,7 +48,7 @@ class Api::TasksController < ApiController
       render
     else
       render json: {
-        message: 'Destroy Failed',
+        message: 'Destroying failed',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -62,7 +62,7 @@ class Api::TasksController < ApiController
         render 
       else
         render json: {
-          message: 'Deletion failsed.',
+          message: 'Destroying failed.',
           errors: @task.errors.full_messages
         }, status: 422
       end
