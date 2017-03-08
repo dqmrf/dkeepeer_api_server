@@ -56,6 +56,7 @@ class Api::TasksController < ApiController
 
   def batch_destroy
     @ids = params[:tasks]
+    
     if @ids && @ids.kind_of?(Array)
       @tasks = current_user.tasks.where(id: @ids)
       if @tasks.delete_all
@@ -64,8 +65,12 @@ class Api::TasksController < ApiController
         render json: {
           message: 'Destroying failed.',
           errors: @task.errors.full_messages
-        }, status: 422
+        }, status: 500
       end
+    else
+      render json: {
+        message: 'Invalid params.'
+      }, status: 422
     end
   end
 
