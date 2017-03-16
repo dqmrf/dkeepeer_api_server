@@ -17,6 +17,16 @@ class User < ApplicationRecord
     save!(:validate => false)
   end
 
+  def full_name
+    [first_name, last_name].join(' ')
+  end
+
+  def full_name=(name)
+    elements = name.split(' ')
+    self.last_name = elements.delete(elements.last)
+    self.first_name = elements.join(" ")
+  end
+
   private
 
     def confirmation_token
