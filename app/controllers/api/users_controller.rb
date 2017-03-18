@@ -24,7 +24,7 @@ class Api::UsersController < ApiController
       render :show, status: :ok
     else
       render json: {
-        message: 'Validation Failed',
+        message: 'Registration failed',
         errors: @user.errors.full_messages
       }, status: 422
     end
@@ -35,7 +35,7 @@ class Api::UsersController < ApiController
       render :show
     else
       render json: {
-        message: 'Updating Failed',
+        message: 'Could not update profile',
         errors: @user.errors.full_messages
       }, status: 422
     end
@@ -46,7 +46,7 @@ class Api::UsersController < ApiController
       render
     else
       render json: {
-        message: 'Destroying Failed',
+        message: 'Could not delete user',
         errors: @user.errors.full_messages
       }, status: 422
     end
@@ -57,11 +57,12 @@ class Api::UsersController < ApiController
     if user
       user.update_attribute(:email_confirmed, true)
       render json: {
-        message: 'Email address is Confirmed'
+        message: 'Email address has already confirmed',
+        errors: user.errors.full_messages
       }, status: 200
     else
       render json: {
-        message: 'Confirmation Failed'
+        message: 'Email confirmation failed'
       }, status: 422
     end
   end

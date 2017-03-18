@@ -17,7 +17,7 @@ class Api::TasksController < ApiController
       render :show
     else
       render json: {
-        message: 'Creating failed',
+        message: 'Could not create task',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -26,7 +26,7 @@ class Api::TasksController < ApiController
   def show
     unless @task
       render json: {
-        message: 'Can\'t load task',
+        message: 'Could not load task',
         errors: @task.errors.full_messages
       }, status: 204 
     end
@@ -37,7 +37,7 @@ class Api::TasksController < ApiController
       render
     else
       render json: {
-        message: 'Updating failed',
+        message: 'Could not update task',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -48,7 +48,7 @@ class Api::TasksController < ApiController
       render
     else
       render json: {
-        message: 'Destroying failed',
+        message: 'Could not delete task',
         errors: @task.errors.full_messages
       }, status: 422
     end
@@ -63,13 +63,13 @@ class Api::TasksController < ApiController
         render 
       else
         render json: {
-          message: 'Destroying failed.',
+          message: 'Could not delete tasks',
           errors: @task.errors.full_messages
         }, status: 500
       end
     else
       render json: {
-        message: 'Invalid params.'
+        message: 'Invalid params'
       }, status: 422
     end
   end
